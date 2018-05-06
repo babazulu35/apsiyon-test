@@ -1,6 +1,9 @@
 <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">
      {{menuTitle}} <mat-icon>{{icon}}</mat-icon></button>
-<mat-menu #menu="matMenu">
-    <mat-checkbox>Check me!</mat-checkbox>
-    <mat-checkbox>Check me!</mat-checkbox>
+<mat-menu #menu="matMenu" [class]="panelClass">
+    <mat-selection-list (selectionChange)="onSelectionChange($event)" #lists>
+        <mat-list-option *ngFor="let list of typesOfList" [selected]="list.selected" (click)="onAreaListControlChanged(list)" [value]="list">
+            {{list}}
+        </mat-list-option>
+    </mat-selection-list>
 </mat-menu>

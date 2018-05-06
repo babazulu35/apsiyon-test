@@ -11,6 +11,7 @@ export class HttpService {
   apiUrl:string = Env.api.mock;
   endPoint:string = "/movies";
   count: BehaviorSubject<number> = new BehaviorSubject(0);
+  movieSubject: BehaviorSubject<Movies[]> = new BehaviorSubject([]);
 
   constructor(private http:HttpClient) { 
 

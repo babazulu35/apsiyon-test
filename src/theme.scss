@@ -1,0 +1,36 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+// Define the default theme (same as the example above).
+$mat-apsiyon-default:( 100: #f9f9f9, 500: #f9f9f9, 700: #f9f9f9, A200: #f9f9f9, contrast: ( 50: $dark-primary-text, 100: $dark-primary-text, 200: $dark-primary-text, 300: $light-primary-text, 400: $light-primary-text, 500: $light-primary-text, 600: $light-primary-text, 700: $light-primary-text, 800: $light-primary-text, 900: $light-primary-text, A100: $dark-primary-text, A200: $light-primary-text, A400: $light-primary-text, A700: $light-primary-text, ));
+$mat-apsiyon-accents:( 100: #C19C71, 500: #C19C71, 700: #C19C71, A100: #C19C71, A200: #C19C71, A400: #C19C71, A700: #C19C71, contrast: ( 50: $dark-primary-text, 100: $dark-primary-text, 200: $dark-primary-text, 300: $light-primary-text, 400: $light-primary-text, 500: $light-primary-text, 600: $light-primary-text, 700: $light-primary-text, 800: $light-primary-text, 900: $light-primary-text, A100: $dark-primary-text, A200: $light-primary-text, A400: $light-primary-text, A700: $light-primary-text, ));
+$apsiyon-app-primary: mat-palette($mat-apsiyon-default, 100);
+$apsiyon-app-accent: mat-palette($mat-apsiyon-accents, 500);
+$apsiyon-app-theme: mat-light-theme($apsiyon-app-primary, $apsiyon-app-accent);
+$custom-typography: mat-typography-config( $font-family: 'Verdana', $headline: mat-typography-level(32px, 48px, 700), $body-1: mat-typography-level(16px, 24px, 500));
+// Include the default theme styles.
+@include angular-material-theme($apsiyon-app-theme);
+// Define an alternate dark theme.
+$mat-apsiyon-blue:( 100: #f9f9f9, 500: #f9f9f9, 700: #f9f9f9, A200: #f9f9f9, contrast: ( 50: $dark-primary-text, 100: $dark-primary-text, 200: $dark-primary-text, 300: $light-primary-text, 400: $light-primary-text, 500: $light-primary-text, 600: $light-primary-text, 700: $light-primary-text, 800: $light-primary-text, 900: $light-primary-text, A100: $dark-primary-text, A200: $light-primary-text, A400: $light-primary-text, A700: $light-primary-text, ));
+$mat-apsiyon-blue-accents:( 50: #fff8e1, 100: #ffecb3, 200: #ffe082, 300: #ffd54f, 400: #ffca28, 500: #ffc107, 600: #ffb300, 700: #ffa000, 800: #ff8f00, 900: #ff6f00, A100: #ffe57f, A200: #ffd740, A400: #ffc400, A700: #ffab00, contrast: ( 50: $dark-primary-text, 100: $dark-primary-text, 200: $dark-primary-text, 300: $dark-primary-text, 400: $dark-primary-text, 500: $dark-primary-text, 600: $dark-primary-text, 700: $dark-primary-text, 800: $dark-primary-text, 900: $dark-primary-text, A100: $dark-primary-text, A200: $dark-primary-text, A400: $dark-primary-text, A700: $dark-primary-text, ));
+$apsiyon-blue-primary: mat-palette($mat-apsiyon-blue, 100);
+$apsiyon-blue-accent: mat-palette($mat-apsiyon-blue-accents, A200);
+$apsiyon-blue-theme: mat-light-theme($apsiyon-blue-primary, $apsiyon-blue-accent);
+// Include the default theme styles.
+.apsiyon-blue {
+    @include angular-material-theme($apsiyon-blue-theme);
+}
+
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.apsiyon-gray {
+    @include angular-material-theme($dark-theme);
+}

@@ -1,2 +1,16 @@
 // s Prefix means that is a shared element
-.s-toolbar {}
+:host {
+    &.s-toolbar {
+        display: block;
+        border-bottom: 1px solid #BBBBBB;
+        mat-toolbar {
+            width: 1366px;
+            margin: auto;
+            justify-content: space-between;
+            &.mat-toolbar-row,
+            &.mat-toolbar-single-row {
+                height: 84px;
+            }
+        }
+    }
+}
