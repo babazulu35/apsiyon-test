@@ -1,17 +1,18 @@
 import { Movies } from './models/movies';
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { HttpService } from './services/http.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   providers:[HttpService]
 })
 export class AppComponent implements OnInit {
+  @HostBinding('class.app-main') true;
   title = 'app';
-  movies:Movies[];
+  movies: Movies[];
   isDisable = [];
 
   constructor(private httpService:HttpService) {

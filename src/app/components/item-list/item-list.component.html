@@ -1,0 +1,19 @@
+<ul>
+    <li *ngFor="let movie of movies">
+        <h2>{{movie.title}} <em>{{movie.rank}}</em></h2>
+        <div class="button-row">
+            <button mat-icon-button color="primary" (click)="updateRank('increase',{id:movie.id,rank:movie.rank})">
+                <mat-icon aria-label="Increase Rank" >arrow_drop_up</mat-icon>
+              </button>
+        </div>
+        <div class="button-row">
+            <button mat-icon-button color="primary" (click)="updateRank('decrease',{id:movie.id,rank:movie.rank})">
+                <mat-icon aria-label="Increase Rank" >arrow_drop_down</mat-icon>
+              </button>
+        </div>
+    </li>
+</ul>
+
+<button (click)="createNewMovie()">CREATE NEW MOVIE</button>
+<button (click)="sortByName()">SORT BY NAME</button>
+<button (click)="sortByRank()">SORT BY Rank</button>
