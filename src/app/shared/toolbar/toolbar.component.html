@@ -1,10 +1,20 @@
 <mat-toolbar color="primary">
-    <div>
-        <app-sort-item [icon]="'expand_more'" menuTitle="Türler"></app-sort-item>
-        <app-sort-item [icon]="'expand_more'" menuTitle="Sırala"></app-sort-item>
-    </div>
-    <!-- This fills the remaining space of the current row -->
-    <span>Case Study</span>
-    <button mat-raised-button color="accent">YENİ KAYIT</button>
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell">
+                <app-sort-item [icon]="'expand_more'" menuTitle="Türler"></app-sort-item>
+                <app-sort-item [icon]="'expand_more'" menuTitle="Sırala"></app-sort-item>
+            </div>
+            <div class="mdc-layout-grid__cell" style="text-align:center;">
+                <span class="s-toolbar--title">Case Study</span>
+            </div>
+            <div class="mdc-layout-grid__cell" style="text-align:right;">
+                <button mat-raised-button color="accent" routerLink="create">
+                    <mat-icon>add</mat-icon>
+                    YENİ KAYIT    
+                </button>
+            </div>
 
+        </div>
+    </div>
 </mat-toolbar>

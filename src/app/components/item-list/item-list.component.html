@@ -1,24 +1,25 @@
-<mat-card *ngFor="let movie of movies">
-    <mat-card-header>
-        <mat-card-title>{{movie.title}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>{{movie.rank}}</mat-card-content>
-    <mat-card-actions>
-        <div class="button-row">
-            <button mat-icon-button color="accent" (click)="updateRank('increase',{id:movie.id,rank:movie.rank})">
-                <mat-icon svgIcon="arrow-drop-up" aria-label="Increase Rank" ></mat-icon>
-              </button>
+<div *ngFor="let movie of movies">
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell">{{movie.title}}</div>
+            <div class="mdc-layout-grid__cell" style="text-align:center;">
+
+                <mat-icon [attr.rank]="movie.rank" aria-label="Rate" style="color:#EFCE4A;">star</mat-icon>
+
+            </div>
+            <div class="mdc-layout-grid__cell" style="text-align:right;">
+                <div class="button-row">
+
+                    <mat-icon aria-label="Increase Rank" (click)="updateRank('increase',{id:movie.id,rank:movie.rank})">arrow_drop_up</mat-icon>
+                    <mat-icon aria-label="Decrease Rank" (click)="updateRank('decrease',{id:movie.id,rank:movie.rank})">arrow_drop_down</mat-icon>
+
+                </div>
+            </div>
         </div>
-        <div class="button-row">
-            <button mat-icon-button color="accent" (click)="updateRank('decrease',{id:movie.id,rank:movie.rank})">
-                <mat-icon aria-label="Increase Rank" >arrow_drop_down</mat-icon>
-            </button>
-        </div>
-    </mat-card-actions>
-</mat-card>
+    </div>
 
 
-
+</div>
 
 <button (click)="createNewMovie()">CREATE NEW MOVIE</button>
 <button (click)="sortByName()">SORT BY NAME</button>

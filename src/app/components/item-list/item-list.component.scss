@@ -1,18 +1,28 @@
 :host {
     display: block;
-    width: 1366px;
+    width: 1200px;
     margin: auto;
-    mat-card {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .mdc-layout-grid {
         border: 1px solid #bbbbbb;
         border-radius: 8px;
         margin: 10px 0px;
         padding: 18px;
-        .mat-card-title,
-        .mat-card-content {
-            margin-bottom: 0px;
+        background: #f9f9f9;
+        .mdc-layout-grid__inner {
+            align-items: center;
         }
+    }
+    .mat-icon {
+        font-size: 80px;
+        width: auto;
+        height: auto;
+        padding: 0;
+        line-height: 0;
+        margin-bottom: 20px;
+        display: block;
+    }
+    .button-row {
+        display: block;
+        padding-top: 20px
     }
 }

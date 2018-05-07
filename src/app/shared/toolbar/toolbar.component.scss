@@ -3,13 +3,42 @@
     &.s-toolbar {
         display: block;
         border-bottom: 1px solid #BBBBBB;
+        margin-bottom: 30px;
         mat-toolbar {
-            width: 1366px;
+            width: 1200px;
             margin: auto;
-            justify-content: space-between;
+            padding: 0;
             &.mat-toolbar-row,
             &.mat-toolbar-single-row {
                 height: 84px;
+            }
+            .mdc-layout-grid {
+                width: 100%;
+                padding: 0;
+            }
+            .mdc-layout-grid__inner {
+                align-items: center;
+            }
+            .mat-raised-button {
+                line-height: 46px !important;
+                border-radius: 8px;
+                font-size: 17px !important;
+            }
+            .s-toolbar--title {
+                font-size: 30px;
+            }
+            .mat-icon {
+                font-size: 34px;
+                width: 34px;
+                height: 34px;
+                position: relative;
+                &:before {
+                    content: attr(rank);
+                    position: absolute;
+                    left: 0;
+                    color: #000;
+                    font-size: 14px;
+                }
             }
         }
     }

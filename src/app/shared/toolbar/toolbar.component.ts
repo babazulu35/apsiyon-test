@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,11 +10,13 @@ export class ToolbarComponent implements OnInit {
   @HostBinding('class.s-toolbar') true;
   @HostBinding('class.mat-toolbar') isToolbar:boolean;
   @HostBinding('class.mat-primary') isPrimary:boolean;
-  constructor() { }
+  constructor(private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     this.isToolbar = true;
     this.isPrimary = true;
+    
   }
+  
 
 }

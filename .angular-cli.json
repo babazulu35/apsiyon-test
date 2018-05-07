@@ -19,7 +19,8 @@
         "prefix": "app",
         "styles": [
             "styles.scss",
-            "theme.scss"
+            "theme.scss",
+            "../node_modules/@material/layout-grid/mdc-layout-grid.scss"
         ],
         "scripts": [],
         "environmentSource": "environments/environment.ts",
