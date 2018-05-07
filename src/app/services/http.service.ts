@@ -1,9 +1,13 @@
+
 import { Observable } from 'rxjs/Observable';
 import { Movies } from './../models/movies';
 import { Injectable } from '@angular/core';
 import {environment as Env} from './../../environments/environment';
 import {BehaviorSubject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../app.reducer';
+import * as UI from '../actions/ui.actions'
 @Injectable()
 export class HttpService {
   
@@ -13,10 +17,17 @@ export class HttpService {
   count: BehaviorSubject<number> = new BehaviorSubject(0);
   movieSubject: BehaviorSubject<Movies[]> = new BehaviorSubject([]);
 
-  constructor(private http:HttpClient) { 
+  constructor(
+    private http:HttpClient,
+    private store: Store<fromRoot.State>,
+  
+  ) { 
 
     this.getAllList().subscribe(totalData => {
       this.count.next(totalData.length);
+      this.store.dispatch(new UI.StartLoading());
+    },error => {
+      this.store.dispatch(new UI.StopLoading());
     })
   }
   

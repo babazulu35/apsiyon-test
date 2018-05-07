@@ -5,8 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-
+import  { StoreModule,ActionReducer } from '@ngrx/store' ;
+import { storeLogger } from 'ngrx-store-logger';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
@@ -17,8 +17,13 @@ import { SortItemComponent } from './components/sort-item/sort-item.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { CreateRecordComponent } from './components/create-record/create-record.component';
+import { reducers } from './app.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-
+export function logger(reducer:ActionReducer<any>):any {
+  return storeLogger()(reducer);
+}
+export const metaReducers = [logger];
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,8 +41,12 @@ import { CreateRecordComponent } from './components/create-record/create-record.
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    AppRoutingModule
-
+    AppRoutingModule,
+    StoreModule.forRoot(reducers,{metaReducers}),
+    StoreDevtoolsModule.instrument({
+      maxAge:25
+    })
+    
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

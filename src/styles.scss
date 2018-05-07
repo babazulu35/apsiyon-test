@@ -20,3 +20,10 @@ body {
         height: 35px !important
     }
 }
+
+@media only screen and (max-width: 1200px) {
+    app-item-list {
+        width: 90% !important;
+        margin: auto;
+    }
+}
