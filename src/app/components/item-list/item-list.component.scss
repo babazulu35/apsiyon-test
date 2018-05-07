@@ -2,6 +2,26 @@
     display: block;
     width: 1200px;
     margin: auto;
+    .title {
+        font-size: 20px;
+        color: #666;
+        span {
+            float: left;
+        }
+        i {
+            display: none;
+        }
+        &:hover {
+            cursor: pointer;
+            i {
+                display: block;
+                color: #CE0505;
+                font-size: 30px;
+                margin-top: -3px;
+                margin-left: 12px;
+            }
+        }
+    }
     .mdc-layout-grid {
         border: 1px solid #bbbbbb;
         border-radius: 8px;
@@ -12,7 +32,7 @@
             align-items: center;
         }
     }
-    .mat-icon {
+    /*     .mat-icon {
         font-size: 80px;
         width: auto;
         height: auto;
@@ -20,7 +40,7 @@
         line-height: 0;
         margin-bottom: 20px;
         display: block;
-    }
+    } */
     .button-row {
         display: block;
         padding-top: 20px

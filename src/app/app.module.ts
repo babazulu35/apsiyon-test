@@ -1,3 +1,4 @@
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { ResponseTimeInterceptor } from './interceptor/response-time';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,7 +25,8 @@ import { CreateRecordComponent } from './components/create-record/create-record.
     SortItemComponent,
     ItemListComponent,
     CreateRecordComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,7 @@ import { CreateRecordComponent } from './components/create-record/create-record.
         multi: true
     }
   ],
+  entryComponents:[PaginationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

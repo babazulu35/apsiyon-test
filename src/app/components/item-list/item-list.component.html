@@ -1,17 +1,20 @@
 <div *ngFor="let movie of movies">
     <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
-            <div class="mdc-layout-grid__cell">{{movie.title}}</div>
+            <div class="mdc-layout-grid__cell title ">
+                <span>{{movie.title}}</span>
+                <i class="far fa-trash-alt" (click)="openDialog()"></i>
+            </div>
             <div class="mdc-layout-grid__cell" style="text-align:center;">
 
-                <mat-icon [attr.rank]="movie.rank" aria-label="Rate" style="color:#EFCE4A;">star</mat-icon>
-
+                <mat-icon aria-label="Rate" style="color:#EFCE4A;font-size:24px">star</mat-icon>
+                <span>{{movie.rank}}</span>
             </div>
             <div class="mdc-layout-grid__cell" style="text-align:right;">
                 <div class="button-row">
-
-                    <mat-icon aria-label="Increase Rank" (click)="updateRank('increase',{id:movie.id,rank:movie.rank})">arrow_drop_up</mat-icon>
-                    <mat-icon aria-label="Decrease Rank" (click)="updateRank('decrease',{id:movie.id,rank:movie.rank})">arrow_drop_down</mat-icon>
+                    <span> PUAN VER</span>
+                    <mat-icon inline="false" aria-label="Increase Rank" (click)="updateRank('increase',{id:movie.id,rank:movie.rank})">arrow_drop_up</mat-icon>
+                    <mat-icon inline="false" aria-label="Decrease Rank" (click)="updateRank('decrease',{id:movie.id,rank:movie.rank})">arrow_drop_down</mat-icon>
 
                 </div>
             </div>

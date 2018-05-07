@@ -1,16 +1,23 @@
+
 import { Movies } from './../../models/movies';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { HttpService } from '../../services/http.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { PaginationComponent } from './../pagination/pagination.component';
 
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.scss']
+  styleUrls: ['./item-list.component.scss'],
+  entryComponents:[PaginationComponent]
+  
 })
 export class ItemListComponent implements OnInit {
   movies: Movies[];
   isDisable = [];
-  constructor(private httpService:HttpService) { }
+  constructor(
+    private httpService:HttpService,public dialog: MatDialog)
+  { }
 
   ngOnInit() {
     this.httpService.movieSubject.subscribe(movieList => {
@@ -25,7 +32,18 @@ export class ItemListComponent implements OnInit {
        console.log("Count REsult",countResult);
      })
   }
+  openDialog(): void {
+    let dialogRef = this.dialog.open(PaginationComponent, {
+      width: '50vw',
+      height:'500px',
+      
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed',result);
+    
+    });
+  }
   updateRank(action,params:{}) {
     let newRank;
 
