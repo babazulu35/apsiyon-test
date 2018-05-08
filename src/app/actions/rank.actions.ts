@@ -1,10 +1,8 @@
 import {Action} from '@ngrx/store';
 
-export const INCREASE_RANK = '[RATE] Increase Rank';
+export const INCREASE_RANK = '[RATE] Increase Rate';
 
-export const DECREASE_RANK = '[RATE] Decsrease Rank';
-
-export const CURRENT_RANK = ' [RATE] Current Rank';
+export const DECREASE_RANK = '[RATE] Decrease Rate';
 
 export class IncreaseRank implements Action {
     readonly type = INCREASE_RANK;
@@ -16,10 +14,4 @@ export class DecreaseRank implements Action {
     constructor(public payload:number) {}
 }
 
-export class CurrentRank implements Action {
-    readonly type = CURRENT_RANK;
-
-    constructor(public payload:number) {}
-}
-
-export type RankActions = IncreaseRank | DecreaseRank | CurrentRank; 
+export type RankActions = IncreaseRank | DecreaseRank; 

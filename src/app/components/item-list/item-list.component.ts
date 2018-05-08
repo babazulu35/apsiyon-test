@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../../app.reducer';
 import * as UI from '../../actions/ui.actions';
 import * as Rank from '../../actions/rank.actions';
+import * as Movie from '../../actions/movie.actions';
 import { Observable } from 'rxjs/Observable';
 //import { map } from 'rxjs/operators';
 import  "rxjs/add/operator/map";
@@ -26,6 +27,7 @@ export class ItemListComponent implements OnInit {
   isDisable = [];
   isLoading$:Observable<boolean>;
   rate$: Observable<number>;
+  movieList$:Observable<Movies[]>;
   number;
   constructor(
     private httpService:HttpService,
@@ -36,24 +38,25 @@ export class ItemListComponent implements OnInit {
   ngOnInit() {
     
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
+    this.movieList$ = this.store.select(fromRoot.getMovie);
 
+    this.store.select(fromRoot.getMovie).subscribe(result => {
+      if(result)
+      {
+      setTimeout(() => {
+        this.store.dispatch(new UI.StopLoading());
+      },1000) 
+    }
+    })
     this.store.select(fromRoot.getRank).subscribe(result => {
       this.number = result;
     });
-      
     
-    this.httpService.movieSubject.subscribe(movieList => {
-      this.movies = movieList
-      
-    })
     this.httpService.getAllList().subscribe(movieList => {
       if(movieList) {
-        setTimeout(() => {
-          this.store.dispatch(new UI.StopLoading());
-        },5000)
-        
-      }
-      this.httpService.movieSubject.next(movieList);
+        this.store.dispatch(new Movie.GetMovies(movieList));
+      }    
+      
      }); 
 
      // Countet Value 
@@ -70,30 +73,21 @@ export class ItemListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed',result);
-    
     });
   }
   updateRank(action,params:{}) {
-    let newRank;
-
     switch(action) {
-      case "increase":
-      
+      case "increase":   
       this.store.dispatch(new Rank.IncreaseRank(parseInt(params['rank'])));
       break;
       case "decrease":
       this.store.dispatch(new Rank.DecreaseRank(parseInt(params['rank'])));
-      
-      if(newRank <= 0) { newRank = 0; this.isDisable[params['id']] = true; }
+      if(this.number <=0) this.isDisable[params['id']] = true;    
       break; 
     }
 
     this.httpService.patchData(<Movies>{id:params['id'],rank: this.number.toString()}).subscribe(patchResult => {
-      let finded = this.movies.findIndex(result => result.id == params['id'] );
-      // TODO: patch Result da geleni yeni oluşturacağım Movies Reducerine Geçeceğiz
-      this.movies[finded].rank = patchResult.rank;
-      this.store.dispatch(new Rank.CurrentRank(parseInt(patchResult.rank)));
-      //this.httpService.movieSubject.next(this.movies);
+      this.store.dispatch(new Movie.UpdateMovieRate(patchResult));
       
     })  
 }

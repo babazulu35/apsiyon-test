@@ -1,6 +1,4 @@
-import {Action} from '@ngrx/store';
-
-import {RankActions, INCREASE_RANK,DECREASE_RANK,CURRENT_RANK} from '../actions/rank.actions';
+import {RankActions, INCREASE_RANK,DECREASE_RANK} from '../actions/rank.actions';
 
 export interface State {
     rank:any;
@@ -18,13 +16,10 @@ export function RankReducer(state = initialState,action:RankActions) {
             rank: action.payload + 1,
         }
         case DECREASE_RANK:
+       
         return {
-            rank: action.payload - 1,
+            rank: state.rank <= 0 ? 0 : action.payload - 1,
         }
-        case CURRENT_RANK:
-            return {
-                rank: action.payload,
-            }
         default:
             return state;
     }
