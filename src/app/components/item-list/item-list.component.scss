@@ -40,7 +40,7 @@
         border: 1px solid #bbbbbb;
         border-radius: 8px;
         margin: 10px 0px;
-        padding: 18px;
+        padding: 35px 18px;
         background: #f9f9f9;
         .mdc-layout-grid__inner {
             align-items: center;
@@ -57,6 +57,83 @@
     } */
     .button-row {
         display: block;
-        padding-top: 20px
+        padding-top: 20px;
+        position: relative;
+        right: 20px;
+        .row-title {
+            position: absolute;
+            font-size: 12px;
+            right: 0;
+            right: -10px;
+            top: -30px;
+        }
+        .ico {
+            font-size: 32px;
+            color: transparent;
+            user-select: none;
+            position: relative;
+            display: inline-block;
+            box-sizing: border-box;
+            overflow: visible;
+            vertical-align: top;
+            font-style: normal;
+            height: 1em;
+            width: 1em;
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                display: block;
+                box-sizing: border-box;
+            }
+            &.ico-up {
+                position: absolute;
+                top: -10px;
+                right: 0;
+            }
+            &.ico-down {
+                position: absolute;
+                bottom: -30px;
+                right: 0;
+            }
+            &.ico-up:before,
+            &.ico-down:before {
+                border-style: solid;
+                border-width: 0.475em 0 0.475em 0.75em;
+                border-color: transparent transparent transparent green;
+                top: 0.125em;
+                left: 0.1875em;
+                border-radius: 5px;
+            }
+            &.ico-up:before {
+                top: 0;
+                transform: rotate(-90deg);
+            }
+            &.ico-down:before {
+                transform: rotate(90deg);
+                border-color: transparent transparent transparent red;
+            }
+            &.ico-up:hover:before,
+            &.ico-down:hover:before {
+                cursor: pointer;
+                border-color: transparent transparent transparent #777777;
+            }
+        }
+        .fa-sort-up {
+            display: block;
+            height: auto;
+            position: absolute;
+            top: 20;
+            right: 0;
+            color: green;
+        }
+        .fa-sort-down {
+            color: red;
+            display: block;
+            height: auto;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
     }
 }

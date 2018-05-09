@@ -1,4 +1,5 @@
 RATE {{ rate$ | async }}
+
 <div *ngIf="!(isLoading$ | async)">
     <div *ngFor="let movie of movieList$ | async ">
         <div class="mdc-layout-grid">
@@ -9,14 +10,15 @@ RATE {{ rate$ | async }}
                 </div>
                 <div class="mdc-layout-grid__cell" style="text-align:center;">
 
-                    <mat-icon aria-label="Rate" style="color:#EFCE4A;font-size:24px">star</mat-icon>
-                    <span>{{ movie.rank }}</span>
+                    <mat-icon aria-label="Rate" style="color:#EFCE4A;font-size:45px;width:45px;height:45px;">star</mat-icon>
+                    <span style="    display: inline-block;
+                    font-size: 32px;color:#666;position:relative;top:-8px;">{{ movie.rank }}</span>
                 </div>
                 <div class="mdc-layout-grid__cell" style="text-align:right;">
                     <div class="button-row">
-                        <span> PUAN VER</span>
-                        <mat-icon inline="false" aria-label="Increase Rank" (click)="updateRank('increase',{id:movie.id,rank:movie.rank})">arrow_drop_up</mat-icon>
-                        <mat-icon inline="false" aria-label="Decrease Rank" (click)="updateRank('decrease',{id:movie.id,rank:movie.rank})">arrow_drop_down</mat-icon>
+                        <div class="row-title"> Puan Ver</div>
+                        <div class="ico ico-up" (click)="updateRank('increase',{id:movie.id,rank:movie.rank})">up</div>
+                        <div class="ico ico-down" (click)="updateRank('decrease',{id:movie.id,rank:movie.rank})">down</div>
 
                     </div>
                 </div>

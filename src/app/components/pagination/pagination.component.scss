@@ -1,0 +1,68 @@
+:host {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    .c-pagination {
+        border: 1px solid #ccc;
+        width: auto;
+        height: auto;
+        border-radius: 4px;
+        display: flex;
+        &__prev {
+            width: auto;
+            text-align: center;
+            /* height: 100%; */
+            border-right: 1px solid #ccc;
+            background: #fff;
+            color: #C19C71;
+            /* display: inline-block; */
+            flex: 0;
+            padding: 15px 20px;
+            &:hover {
+                cursor: pointer;
+                background: #C19C71;
+                color: #fff;
+            }
+        }
+        &__next {
+            width: auto;
+            text-align: center;
+            /* height: 100%; */
+            background: #fff;
+            color: #C19C71;
+            /* display: inline-block; */
+            flex: 0;
+            padding: 15px 20px;
+            &:hover {
+                cursor: pointer;
+                background: #C19C71;
+                color: #fff;
+            }
+        }
+        &__item {
+            height: auto;
+            widht: auto;
+            padding: 15px 20px;
+            text-align: center;
+            color: #C19C71;
+            background: white;
+            text-align: center;
+            font-size: 16px;
+            display: inline-block;
+            border-right: 1px solid #ccc;
+            &:hover {
+                cursor: pointer;
+                background: #C19C71;
+                color: #fff;
+            }
+            &.selected {
+                cursor: pointer;
+                background: #C19C71;
+                color: #fff;
+            }
+            &:last-child:not(:first-child) {
+                border-right: inherit;
+            }
+        }
+    }
+}

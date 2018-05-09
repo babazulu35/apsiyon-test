@@ -60,8 +60,8 @@ export class HttpService {
     return this.http.delete<Movies>(this.apiUrl + this.endPoint + '/' + data.id,data);
   } */
 
-  paginate():Observable<Movies[]> {
-    return this.http.get<Movies[]>(this.apiUrl + this.endPoint)
+  paginate(paginate:{page:any,limit:any}):Observable<Movies[]> {
+    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_page':paginate.page,'limit':paginate.limit}})
   }
 
   createRandomId(value:string) {

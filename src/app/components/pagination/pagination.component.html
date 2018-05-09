@@ -1,3 +1,8 @@
-<p>
-  pagination works!
-</p>
+<div class="c-pagination">
+    <div class="c-pagination__prev">O</div>
+    <!-- Lıst Number Items -->
+    <div class="c-pagination__item" *ngFor="let page of pages" (click)="onPageChange(page)" [class.selected]="page == (currentPage$ | async)">{{page}}</div>
+    <div class="c-pagination__next">
+        b
+    </div>
+</div>
