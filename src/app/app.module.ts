@@ -19,6 +19,7 @@ import { ItemListComponent } from './components/item-list/item-list.component';
 import { CreateRecordComponent } from './components/create-record/create-record.component';
 import { reducers } from './app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
 
 export function logger(reducer:ActionReducer<any>):any {
   return storeLogger()(reducer);
@@ -31,7 +32,8 @@ export const metaReducers = [logger];
     ItemListComponent,
     CreateRecordComponent,
     ToolbarComponent,
-    PaginationComponent
+    PaginationComponent,
+    DialogMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,7 @@ export const metaReducers = [logger];
         multi: true
     }
   ],
-  entryComponents:[PaginationComponent],
+  entryComponents:[DialogMessageComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

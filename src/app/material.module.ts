@@ -5,6 +5,8 @@ import {MatButtonModule, MatCheckboxModule, MatIconModule, MatToolbarModule, Mat
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatListModule,
     MatCardModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatInputModule
   ],
   exports: [
     MatButtonModule, 
@@ -30,7 +34,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatListModule,
     MatCardModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatInputModule
   ]
 })
 export class MaterialModule { }

@@ -1,3 +1,5 @@
+import { RemoveMovie } from './../../actions/movie.actions';
+import { DialogMessageComponent } from './../dialog-message/dialog-message.component';
 
 
 
@@ -9,7 +11,7 @@ import { PaginationComponent } from './../pagination/pagination.component';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../app.reducer';
 import * as UI from '../../actions/ui.actions';
-import * as Rank from '../../actions/rank.actions';
+import * as Rate from '../../actions/rate.actions';
 import * as Movie from '../../actions/movie.actions';
 import { Observable } from 'rxjs/Observable';
 //import { map } from 'rxjs/operators';
@@ -18,8 +20,7 @@ import  "rxjs/add/operator/map";
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.scss'],
-  entryComponents:[PaginationComponent]
+  styleUrls: ['./item-list.component.scss']
   
 })
 export class ItemListComponent implements OnInit {
@@ -43,50 +44,43 @@ export class ItemListComponent implements OnInit {
     this.store.select(fromRoot.getMovie).subscribe(result => {
       if(result)
       {
-      setTimeout(() => {
         this.store.dispatch(new UI.StopLoading());
-      },1000) 
-    }
+        console.log("Movie Result",result);
+      }
     })
-    this.store.select(fromRoot.getRank).subscribe(result => {
+    this.store.select(fromRoot.getRate).subscribe(result => {
       this.number = result;
     });
     
-    this.httpService.getAllList().subscribe(movieList => {
-      if(movieList) {
-        this.store.dispatch(new Movie.GetMovies(movieList));
-      }    
-      
-     }); 
-
-     // Countet Value 
-     this.httpService.count.subscribe(countResult => {
-       console.log("Count REsult",countResult);
-     })
   }
-  openDialog(): void {
-    let dialogRef = this.dialog.open(PaginationComponent, {
+  openDialog(movie:Movies): void {
+    let dialogRef = this.dialog.open(DialogMessageComponent, {
       width: '50vw',
       height:'500px',
+      data:{title:movie.title + 'Silmek İstediğine Emin misin?',id:movie.id,icon:'far fa-5x fa-trash-alt',multiActions:true,next:null}
       
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed',result);
+      if(result) {
+        this.httpService.deleteData(result).subscribe(deleted => {
+          this.store.dispatch(new Movie.RemoveMovie(result));
+        })
+      }
     });
   }
-  updateRank(action,params:{}) {
+  updateRate(action,params:{}) {
     switch(action) {
       case "increase":   
-      this.store.dispatch(new Rank.IncreaseRank(parseInt(params['rank'])));
+      this.store.dispatch(new Rate.IncreaseRate(parseInt(params['rate'])));
       break;
       case "decrease":
-      this.store.dispatch(new Rank.DecreaseRank(parseInt(params['rank'])));
+      this.store.dispatch(new Rate.DecreaseRate(parseInt(params['rate'])));
       if(this.number <=0) this.isDisable[params['id']] = true;    
       break; 
     }
 
-    this.httpService.patchData(<Movies>{id:params['id'],rank: this.number.toString()}).subscribe(patchResult => {
+    this.httpService.patchData(<Movies>{id:params['id'],rate: this.number.toString()}).subscribe(patchResult => {
       this.store.dispatch(new Movie.UpdateMovieRate(patchResult));
       
     })  

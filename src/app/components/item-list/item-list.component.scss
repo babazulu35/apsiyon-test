@@ -15,7 +15,7 @@
             cursor: pointer;
             i {
                 display: block;
-                color: #CE0505;
+                color: #CB384A;
                 font-size: 30px;
                 margin-top: -3px;
                 margin-left: 12px;
@@ -100,7 +100,7 @@
             &.ico-down:before {
                 border-style: solid;
                 border-width: 0.475em 0 0.475em 0.75em;
-                border-color: transparent transparent transparent green;
+                border-color: transparent transparent transparent #80D23D;
                 top: 0.125em;
                 left: 0.1875em;
                 border-radius: 5px;
@@ -111,29 +111,13 @@
             }
             &.ico-down:before {
                 transform: rotate(90deg);
-                border-color: transparent transparent transparent red;
+                border-color: transparent transparent transparent #CB384A;
             }
             &.ico-up:hover:before,
             &.ico-down:hover:before {
                 cursor: pointer;
                 border-color: transparent transparent transparent #777777;
             }
-        }
-        .fa-sort-up {
-            display: block;
-            height: auto;
-            position: absolute;
-            top: 20;
-            right: 0;
-            color: green;
-        }
-        .fa-sort-down {
-            color: red;
-            display: block;
-            height: auto;
-            position: absolute;
-            bottom: 0;
-            right: 0;
         }
     }
 }

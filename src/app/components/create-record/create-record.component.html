@@ -1,3 +1,19 @@
-<p>
-  create-record works!
-</p>
+<div class="c-create-record">
+    <div class="c-create-record__type">
+        <mat-radio-group>
+            <mat-radio-button (change)="typeCheckHandler($event)" color="accent" value="1">Film</mat-radio-button>
+            <mat-radio-button (change)="typeCheckHandler($event)" color="accent" value="2">Dizi</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div class="c-create-record__input">
+        <mat-form-field color="accent">
+            <input matInput placeholder="Film / Dizi Adı" (keyup)="valuechange($event)">
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+            <input type="text" matInput #rate maxlength="2" pattern="\d*" placeholder="Puanı">
+        </mat-form-field>
+
+        <button [disabled]="!isValid" mat-raised-button color="accent" (click)="sendRecord()">KAYDET</button>
+    </div>
+</div>

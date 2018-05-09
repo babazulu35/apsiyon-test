@@ -1,3 +1,4 @@
+import { SortType } from './../../enum/sort-type.enum';
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { Store } from '@ngrx/store';
@@ -20,13 +21,14 @@ export class SortItemComponent implements OnInit {
   constructor(private httpService:HttpService,private store:Store<fromRoot.State>) { }
   
   panelClass="hakan";
+  sortType = SortType;
   ngOnInit() {
   
   } 
 
   onSelectionChange(event) {
     console.log("Selciton Change Event",event);
-    this.sortByName();
+    this.filterByType('show');
   }
   onAreaListControlChanged(event) {
     console.log("Event",event);
@@ -46,6 +48,13 @@ export class SortItemComponent implements OnInit {
           this.store.dispatch(new UI.StartLoading());
           this.store.dispatch(new Movie.SortAscent(sortResult));
       });
+ }
+
+ filterByType(typeName:string) {
+     this.httpService.filterByType({value:typeName}).subscribe(filterResult => {
+      this.store.dispatch(new UI.StartLoading());
+      this.store.dispatch(new Movie.SortType(filterResult));
+     })
  }
 
 }

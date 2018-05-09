@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding,AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,15 +6,22 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent implements OnInit,AfterViewInit {
   @HostBinding('class.s-toolbar') true;
   @HostBinding('class.mat-toolbar') isToolbar:boolean;
   @HostBinding('class.mat-primary') isPrimary:boolean;
-  constructor(private activatedRoute:ActivatedRoute) { }
+  constructor(private activatedRoute:ActivatedRoute) { 
+    
+  }
 
   ngOnInit() {
     this.isToolbar = true;
     this.isPrimary = true;
+    
+    
+  }
+
+  ngAfterViewInit() {
     
   }
   

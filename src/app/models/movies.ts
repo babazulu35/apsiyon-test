@@ -1,6 +1,6 @@
 export interface Movies {
     id?:string,
     title?:string,
-    rank?:string,
+    rate?:string,
     type?:string
 }

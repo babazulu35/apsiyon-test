@@ -7,7 +7,8 @@ import {BehaviorSubject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../app.reducer';
-import * as UI from '../actions/ui.actions'
+import * as UI from '../actions/ui.actions';
+import * as Movie from '../actions/movie.actions';
 @Injectable()
 export class HttpService {
   
@@ -24,15 +25,24 @@ export class HttpService {
   ) { 
 
     this.getAllList().subscribe(totalData => {
+      console.log("total datas",totalData.length),
       this.count.next(totalData.length);
       this.store.dispatch(new UI.StartLoading());
     },error => {
       this.store.dispatch(new UI.StopLoading());
     })
   }
+
+  refreshState(){
+    this.http.get<Movies[]>(this.apiUrl + this.endPoint).subscribe(result => {
+        if(result) {
+          this.store.dispatch(new Movie.GetMovies(result));
+        }
+    })
+  }
   
   // Get All Movie List
-  getAllList():Observable<Movies[]> {
+  getAllList(params?:any):Observable<Movies[]> {
     return this.http.get<Movies[]>(this.apiUrl + this.endPoint);
   }  
   // Get List element by Id
@@ -45,7 +55,7 @@ export class HttpService {
   postNew(data:Movies):Observable<Movies> {
     let id = this.createRandomId(data.id);
     data.id = id;
-    return this.http.post<Movies>(this.apiUrl + this.endPoint,data);
+    return this.http.post<Movies>(this.apiUrl + this.endPoint,data) ;
   }
 
   update(data:Movies):Observable<Movies> {
@@ -56,21 +66,26 @@ export class HttpService {
     return this.http.patch<Movies>(this.apiUrl + this.endPoint + '/' + data.id,data);
   }
 
-/*   deleteData(data:Movies):Observable<Movies> {
-    return this.http.delete<Movies>(this.apiUrl + this.endPoint + '/' + data.id,data);
-  } */
+  deleteData(id):Observable<Movies> {
+    return this.http.delete<Movies>(this.apiUrl + this.endPoint + '/' + id);
+  }
 
   paginate(paginate:{page:any,limit:any}):Observable<Movies[]> {
-    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_page':paginate.page,'limit':paginate.limit}})
+
+    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_page':paginate.page,'_limit':paginate.limit}})
   }
 
   createRandomId(value:string) {
       //TODO Create Random Id
-      return "tt1234567";
-  }
+      return "3322333";
+  } 
 
   sortBy(sort:{value:string,type:string}):Observable<Movies[]> {
     return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_sort':sort.value,'order':sort.type}})
+  }
+
+  filterByType(filter:{value:string}):Observable<Movies[]> {
+    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'type':filter.value}});
   }
 
 

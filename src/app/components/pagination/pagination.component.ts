@@ -25,7 +25,7 @@ export class PaginationComponent implements OnInit {
     this.currentPage$ = this.store.select(fromRoot.getCurrentPage);
     
     this.store.select(fromRoot.getCurrentPage).subscribe(result => {
-      this.httpService.paginate({page:result,limit:20}).subscribe(pageResult => {
+      this.httpService.paginate({page:result,limit:this.pageLimit}).subscribe(pageResult => {
         console.log("Page Result",pageResult);
         
         this.store.dispatch(new Movie.GetMovies(pageResult));
@@ -34,9 +34,10 @@ export class PaginationComponent implements OnInit {
 
     this.httpService.count.subscribe(countResult => {
       console.log("Count Result",countResult);
-      this.totalItem = countResult / this.pageLimit;
-      for(let i = 1 ; i < this.totalItem; i++) {
-        this.pages.push(i);
+      this.totalItem = Math.ceil(countResult / this.pageLimit);
+      console.log("T",this.totalItem);
+      for(let i = 0 ; i < this.totalItem; i++) {
+        this.pages.push(i + 1);
       }
     } );
     
@@ -45,6 +46,19 @@ export class PaginationComponent implements OnInit {
   onPageChange(page:number) {
     this.store.dispatch(new UI.StartLoading());
     this.store.dispatch(new PAGINATION.ShowSelectedPage(page));
+  }
+
+  onGo(direction:string) {
+    switch(direction) {
+      case 'next':
+        this.store.dispatch(new UI.StartLoading());
+        this.store.dispatch(new PAGINATION.ShowNextPage({totalPageSize:this.totalItem}));
+      break;
+      case 'prev':
+      
+        this.store.dispatch(new PAGINATION.ShowPreviousPage());
+      break;
+    }
   }
 
   

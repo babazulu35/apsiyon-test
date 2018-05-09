@@ -1,0 +1,36 @@
+:host {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .c-create-record {
+        flex: 0 300px;
+        mat-radio-group {
+            display: flex;
+            /* text-align: center; */
+            justify-content: center;
+            align-content: space-between;
+            flex-direction: row;
+            flex-wrap: row;
+            align-items: flex-end;
+            mat-radio-button {
+                flex: 1;
+                text-align: center;
+            }
+        }
+        &__input {
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            .mat-form-field {
+                display: block;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            button {
+                width: 50%;
+                margin: auto;
+            }
+        }
+    }
+}

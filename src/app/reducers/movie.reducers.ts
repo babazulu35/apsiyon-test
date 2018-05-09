@@ -34,11 +34,11 @@ export function MovieReducer(state= initialState, action:MovieActions) {
         case REMOVE_MOVIES:
             return {
                 ...state,
-                movie: state.movie.filter(result => result.id == action.payload )
+                movie: state.movie.filter(result => result.id != action.payload )
             }
         case UPDATE_MOVIE_RATE:
             let find = state.movie.findIndex(result => result.id == action.payload.id);
-            state.movie[find].rank = action.payload.rank;
+            state.movie[find].rate = action.payload.rate;
             return {
                 ...state,
                 movie: state.movie

@@ -1,24 +1,22 @@
-RATE {{ rate$ | async }}
-
 <div *ngIf="!(isLoading$ | async)">
     <div *ngFor="let movie of movieList$ | async ">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell title ">
                     <span>{{movie.title}}</span>
-                    <i class="far fa-trash-alt" (click)="openDialog()"></i>
+                    <i class="far fa-trash-alt" (click)="openDialog(movie)"></i>
                 </div>
                 <div class="mdc-layout-grid__cell" style="text-align:center;">
 
                     <mat-icon aria-label="Rate" style="color:#EFCE4A;font-size:45px;width:45px;height:45px;">star</mat-icon>
                     <span style="    display: inline-block;
-                    font-size: 32px;color:#666;position:relative;top:-8px;">{{ movie.rank }}</span>
+                    font-size: 32px;color:#666;position:relative;top:-8px;">{{ movie.rate }}</span>
                 </div>
                 <div class="mdc-layout-grid__cell" style="text-align:right;">
                     <div class="button-row">
                         <div class="row-title"> Puan Ver</div>
-                        <div class="ico ico-up" (click)="updateRank('increase',{id:movie.id,rank:movie.rank})">up</div>
-                        <div class="ico ico-down" (click)="updateRank('decrease',{id:movie.id,rank:movie.rank})">down</div>
+                        <div class="ico ico-up" (click)="updateRate('increase',{id:movie.id,rate:movie.rate})">up</div>
+                        <div class="ico ico-down" (click)="updateRate('decrease',{id:movie.id,rate:movie.rate})">down</div>
 
                     </div>
                 </div>
@@ -32,6 +30,4 @@ RATE {{ rate$ | async }}
     <mat-spinner color="accent"></mat-spinner>
 </div>
 
-<button (click)="createNewMovie() ">CREATE NEW MOVIE</button>
-<button (click)="sortByName() ">SORT BY NAME</button>
-<button (click)="sortByRank() ">SORT BY Rank</button>
+<app-pagination [pageLimit]="5"></app-pagination>
