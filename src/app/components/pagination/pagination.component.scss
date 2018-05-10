@@ -68,3 +68,71 @@
         }
     }
 }
+
+:host-context(.apsiyon-blue) {
+    $base-color: #8CB0C3;
+    $second-text-color: #ffd740;
+    .c-pagination__item {
+        color: $base-color;
+        &:hover {
+            background: $base-color;
+            color: $second-text-color;
+        }
+        &.selected {
+            background: $base-color;
+            color: $second-text-color;
+        }
+    }
+    .c-pagination {
+        &__next {
+            color: $base-color;
+        }
+        &__prev {
+            color: $base-color
+        }
+        &__next,
+        &__prev {
+            &:hover {
+                background: $base-color;
+                color: $second-text-color;
+            }
+            &.selected {
+                color: $second-text-color
+            }
+        }
+    }
+}
+
+:host-context(.apsiyon-gray) {
+    $base-color: #BBBBBB;
+    $second-text-color: #ffd740;
+    .c-pagination__item {
+        color: $base-color;
+        &:hover {
+            background: $base-color;
+            color: $second-text-color;
+        }
+        &.selected {
+            background: $base-color;
+            color: $second-text-color;
+        }
+    }
+    .c-pagination {
+        &__next {
+            color: $base-color;
+        }
+        &__prev {
+            color: $base-color
+        }
+        &__next,
+        &__prev {
+            &:hover {
+                background: $base-color;
+                color: $second-text-color;
+            }
+            &.selected {
+                color: $second-text-color
+            }
+        }
+    }
+}

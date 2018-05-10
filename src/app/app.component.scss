@@ -1,5 +1,12 @@
-@media only screen and (max-width: 1200px) {
-    app-item-list {
-        width: 100%;
+    @media only screen and (max-width: 1200px) {
+        app-item-list {
+            width: 100%;
+        }
     }
-}
+    
+     :host(.apsiyon-blue) {
+        display: block;
+        .c-pagination__item.selected {
+            background: #8CB0C3 !important;
+        }
+    }

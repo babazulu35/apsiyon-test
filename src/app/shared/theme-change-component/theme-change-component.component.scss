@@ -2,7 +2,29 @@
     .theme-change {
         width: 300px;
         position: fixed;
-        top: 40%;
-        right: 200px;
+        top: 100px;
+        left: 0px;
+        &__panel {
+            text-align: center;
+            display: block;
+            padding: 20px 40px 40px 40px;
+        }
+        &__boxes {
+            display: flex;
+            justify-content: space-between;
+        }
+        &__title {
+            flex: 1;
+            margin-bottom: 20px;
+            display: block;
+            color: #666;
+        }
+        button {
+            background: #fff;
+            color: #333;
+            border: 1px solid #333;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
     }
 }

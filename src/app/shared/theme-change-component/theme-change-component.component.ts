@@ -1,3 +1,4 @@
+import { UserInterfaceService } from './../../services/user-interface.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./theme-change-component.component.scss']
 })
 export class ThemeChangeComponentComponent implements OnInit {
-
-  constructor() { }
+  isSelected = [];
+  constructor(
+    private uiService:UserInterfaceService
+  ) { }
 
   ngOnInit() {
+  }
+
+  themeChangeHandler(event) {
+      this.isSelected = [];
+      this.isSelected[event.source.value] = true;
+      this.uiService.setTheme(event.source.value);
+
+  }
+  inteChange(event) {
+    console.log("Inte Change Enet",event);
   }
 
 }

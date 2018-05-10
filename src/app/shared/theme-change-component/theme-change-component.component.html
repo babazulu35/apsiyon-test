@@ -1,15 +1,14 @@
 <div class="theme-change">
-    <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">
-      <mat-icon>settings}</mat-icon></button>
-    <mat-menu #menu="matMenu" [class]="absolute" [ngSwitch]="sortType">
+    <button mat-raised-button [matMenuTriggerFor]="menu">
+      <mat-icon>settings</mat-icon></button>
+    <mat-menu #menu="matMenu" [class]="'absolute'" [ngSwitch]="sortType">
 
-        <div style="text-align:center;padding:40px;">
-            <span style="flex:1">Tema Rengini Seçiniz</span>
-            <div style="display: flex;
-          justify-content: space-between;">
-                <mat-checkbox></mat-checkbox>
-                <mat-checkbox></mat-checkbox>
-                <mat-checkbox></mat-checkbox>
+        <div class="theme-change__panel">
+            <span class="theme-change__title">Tema Rengini Seçiniz</span>
+            <div class="theme-change__boxes">
+                <mat-checkbox [value]="0" name="'default'" [checked]="isSelected[0]" (change)="themeChangeHandler($event)"></mat-checkbox>
+                <mat-checkbox [value]="1" name="'silversand'" [checked]="isSelected[1]" (change)="themeChangeHandler($event)"></mat-checkbox>
+                <mat-checkbox [value]="2" name="'nepal'" [checked]="isSelected[2]" (change)="themeChangeHandler($event)"></mat-checkbox>
             </div>
         </div>
 

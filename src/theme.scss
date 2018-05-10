@@ -14,7 +14,7 @@ $custom-typography: mat-typography-config( $font-family: 'Verdana', $headline: m
 // Include the default theme styles.
 @include angular-material-theme($apsiyon-app-theme);
 // Define an alternate dark theme.
-$mat-apsiyon-blue:( 100: #f9f9f9, 500: #f9f9f9, 700: #f9f9f9, A200: #f9f9f9, contrast: ( 50: $dark-primary-text, 100: $dark-primary-text, 200: $dark-primary-text, 300: $light-primary-text, 400: $light-primary-text, 500: $light-primary-text, 600: $light-primary-text, 700: $light-primary-text, 800: $light-primary-text, 900: $light-primary-text, A100: $dark-primary-text, A200: $light-primary-text, A400: $light-primary-text, A700: $light-primary-text, ));
+$mat-apsiyon-blue:( 100: #8CB0C3, 500: #8CB0C3, 700: #8CB0C3, A200: #8CB0C3, contrast: ( 50: $dark-primary-text, 100: $dark-primary-text, 200: $dark-primary-text, 300: $light-primary-text, 400: $light-primary-text, 500: $light-primary-text, 600: $light-primary-text, 700: $light-primary-text, 800: $light-primary-text, 900: $light-primary-text, A100: $dark-primary-text, A200: $light-primary-text, A400: $light-primary-text, A700: $light-primary-text, ));
 $mat-apsiyon-blue-accents:( 50: #fff8e1, 100: #ffecb3, 200: #ffe082, 300: #ffd54f, 400: #ffca28, 500: #ffc107, 600: #ffb300, 700: #ffa000, 800: #ff8f00, 900: #ff6f00, A100: #ffe57f, A200: #ffd740, A400: #ffc400, A700: #ffab00, contrast: ( 50: $dark-primary-text, 100: $dark-primary-text, 200: $dark-primary-text, 300: $dark-primary-text, 400: $dark-primary-text, 500: $dark-primary-text, 600: $dark-primary-text, 700: $dark-primary-text, 800: $dark-primary-text, 900: $dark-primary-text, A100: $dark-primary-text, A200: $dark-primary-text, A400: $dark-primary-text, A700: $dark-primary-text, ));
 $apsiyon-blue-primary: mat-palette($mat-apsiyon-blue, 100);
 $apsiyon-blue-accent: mat-palette($mat-apsiyon-blue-accents, A200);
@@ -22,15 +22,22 @@ $apsiyon-blue-theme: mat-light-theme($apsiyon-blue-primary, $apsiyon-blue-accent
 // Include the default theme styles.
 .apsiyon-blue {
     @include angular-material-theme($apsiyon-blue-theme);
+    .cdk-overlay-container {
+        .mat-accent {
+            background: red;
+            background-color: red;
+        }
+    }
 }
 
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent: mat-palette($mat-amber, A200, A100, A400);
-$dark-warn: mat-palette($mat-deep-orange);
-$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+$mat-apsiyon-gray:( 100: #bbbbbb, 500: #bbbbbb, 700: #bbbbbb, A200: #ffbbbb, contrast: ( 50: $dark-primary-text, 100: $dark-primary-text, 200: $dark-primary-text, 300: $light-primary-text, 400: $light-primary-text, 500: $light-primary-text, 600: $light-primary-text, 700: $light-primary-text, 800: $light-primary-text, 900: $light-primary-text, A100: $dark-primary-text, A200: $light-primary-text, A400: $light-primary-text, A700: $light-primary-text, ));
+$mat-apsiyon-gray-accents:( 50: #fff8e1, 100: #ffecb3, 200: #ffe082, 300: #ffd54f, 400: #ffca28, 500: #ffc107, 600: #ffb300, 700: #ffa000, 800: #ff8f00, 900: #ff6f00, A100: #ffe57f, A200: #ffd740, A400: #ffc400, A700: #ffab00, contrast: ( 50: $dark-primary-text, 100: $dark-primary-text, 200: $dark-primary-text, 300: $dark-primary-text, 400: $dark-primary-text, 500: $dark-primary-text, 600: $dark-primary-text, 700: $dark-primary-text, 800: $dark-primary-text, 900: $dark-primary-text, A100: $dark-primary-text, A200: $dark-primary-text, A400: $dark-primary-text, A700: $dark-primary-text, ));
+$apsiyon-gray-primary: mat-palette($mat-apsiyon-gray, 100);
+$apsiyon-gray-accent: mat-palette($mat-apsiyon-gray-accents, A200);
+$apsiyon-gray-theme: mat-light-theme($apsiyon-gray-primary, $apsiyon-gray-accent);
 // Include the alternative theme styles inside of a block with a CSS class. You can make this
 // CSS class whatever you want. In this example, any component inside of an element with
 // `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .apsiyon-gray {
-    @include angular-material-theme($dark-theme);
+    @include angular-material-theme($apsiyon-gray-theme);
 }

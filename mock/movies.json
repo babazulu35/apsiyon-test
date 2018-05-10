@@ -63,7 +63,7 @@
     {
       "type": "movie",
       "title": "Seven Samurai",
-      "rate": "7",
+      "rate": "9",
       "id": "0047478"
     },
     {
@@ -111,7 +111,7 @@
     {
       "type": "movie",
       "title": "Casablanca",
-      "rate": 0,
+      "rate": "1",
       "id": "0034583"
     },
     {
@@ -141,7 +141,7 @@
     {
       "type": "movie",
       "title": "Léon: The Professional",
-      "rate": "6",
+      "rate": "7",
       "id": "0110413"
     },
     {

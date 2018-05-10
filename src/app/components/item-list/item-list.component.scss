@@ -121,3 +121,29 @@
         }
     }
 }
+
+:host-context(.apsiyon-blue) {
+    $base-color: #D1DFE7;
+    $border-color: #929ca1;
+    $text-color: #53595c;
+    .title {
+        color: $text-color;
+    }
+    .mdc-layout-grid {
+        background: $base-color;
+        border: 1px solid $border-color;
+    }
+}
+
+:host-context(.apsiyon-gray) {
+    $base-color: #e3e3e3;
+    $border-color: #4a4a4a;
+    $text-color: #252525;
+    .title {
+        color: $text-color;
+    }
+    .mdc-layout-grid {
+        background: $base-color;
+        border: 1px solid $border-color;
+    }
+}
