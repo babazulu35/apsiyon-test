@@ -81,7 +81,10 @@ export class HttpService {
     let params = new HttpParams().set('_page',paginate.page).set('_limit',paginate.limit);
     this.isFiltered.subscribe(filterParams => {
       if(Object.keys(filterParams).length > 0) {
+          if(filterParams['value'] != null)
+          {
           params = params.append('type',filterParams['value']);
+          }
          
       } 
     });
@@ -123,7 +126,7 @@ export class HttpService {
     console.log(filter);
     filter.value != null ? params = new HttpParams().set('type',filter.value) : params = new HttpParams().set('*','*');
     this.pageLimit.subscribe(result => limit = result);
-    if(filter.value != null) this.filterItem(filter);
+    this.filterItem(filter);
     this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params}).subscribe(filterResult => {
         this.store.dispatch(new UI.StartLoading());
         this.count.next(filterResult.length);
