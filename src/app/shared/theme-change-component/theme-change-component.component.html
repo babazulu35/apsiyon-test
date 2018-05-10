@@ -1,0 +1,17 @@
+<div class="theme-change">
+    <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">
+      <mat-icon>settings}</mat-icon></button>
+    <mat-menu #menu="matMenu" [class]="absolute" [ngSwitch]="sortType">
+
+        <div style="text-align:center;padding:40px;">
+            <span style="flex:1">Tema Rengini Seçiniz</span>
+            <div style="display: flex;
+          justify-content: space-between;">
+                <mat-checkbox></mat-checkbox>
+                <mat-checkbox></mat-checkbox>
+                <mat-checkbox></mat-checkbox>
+            </div>
+        </div>
+
+    </mat-menu>
+</div>

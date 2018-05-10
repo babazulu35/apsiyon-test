@@ -1,9 +1,13 @@
 <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">
      {{menuTitle}} <mat-icon>{{icon}}</mat-icon></button>
-<mat-menu #menu="matMenu" [class]="panelClass">
-    <mat-selection-list (selectionChange)="onSelectionChange($event)" #lists>
-        <mat-list-option *ngFor="let list of typesOfList" [selected]="list.selected" (click)="onAreaListControlChanged(list)" [value]="list">
-            {{list}}
+<mat-menu #menu="matMenu" [class]="panelClass" [ngSwitch]="sortType">
+
+    <mat-selection-list *ngSwitchCase="'filter'">
+        <mat-list-option *ngFor="let list of menuItem" [selected]="isSelected[list.change]" (click)="onAreaListControlChanged(list)" [value]="list">
+            {{list.name}}
         </mat-list-option>
     </mat-selection-list>
+    <div *ngSwitchCase="'sort'">
+        <button *ngFor="let list of menuItem" (click)="onSortBy($event,list.change)" color="accent" mat-menu-item>{{list.name}}</button>
+    </div>
 </mat-menu>

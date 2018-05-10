@@ -17,37 +17,51 @@ export class SortItemComponent implements OnInit {
   @HostBinding('class.c-sort-item') true;
   @Input() icon:string;
   @Input() menuTitle:string;
-  typesOfList = ['Tümü', 'Filimler', 'Diziler'];
+  @Input() sortType:string;
+  @Input() menuItem:{change:number,name:string};
+  isSelected = [];
   constructor(private httpService:HttpService,private store:Store<fromRoot.State>) { }
   
-  panelClass="hakan";
-  sortType = SortType;
+  panelClass="menu-panel";
+
   ngOnInit() {
-  
+
   } 
 
-  onSelectionChange(event) {
-    console.log("Selciton Change Event",event);
-    this.filterByType('show');
-  }
   onAreaListControlChanged(event) {
-    console.log("Event",event);
+    this.isSelected = [];
+    this.isSelected[event.change] = true;
+
+    switch(event.change) {
+      case 0:
+        
+      break;
+      case 1:
+        this.filterByType('movie');
+      break;
+      case 2:
+        this.filterByType('show');
+      break;
+    }
+
   }
-
-  sortByRank() {
-    // Sort By Result 
-    this.httpService.sortBy({value:'rank',type:'asc'}).subscribe(sortResult => {
-      
-      this.store.dispatch(new Movie.SortAscent(sortResult));
-  });    
- }
-
- sortByName() {
+ sortByName(value,type) {
         // Sort By Result 
-        this.httpService.sortBy({value:'title',type:'asc'}).subscribe(sortResult => {
+        this.httpService.sortBy({value:value,type:type}).subscribe(sortResult => {
           this.store.dispatch(new UI.StartLoading());
+          
           this.store.dispatch(new Movie.SortAscent(sortResult));
       });
+ }
+
+ onSortBy(event,changeType) {
+      if(changeType == 0) {
+        this.sortByName('rate','asc')
+      }
+      else if(changeType == 1) {
+        this.sortByName('rate','desc');
+      }
+
  }
 
  filterByType(typeName:string) {

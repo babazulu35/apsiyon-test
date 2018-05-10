@@ -8,7 +8,7 @@ const appRoutes: Routes = [
     path: '', component: ItemListComponent
   },
   {
-    path: 'create', component: CreateRecordComponent
+    path: 'create', component: CreateRecordComponent,data:{type:'create'}
   }
 ];
 

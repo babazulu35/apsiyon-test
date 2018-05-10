@@ -9,79 +9,79 @@
     {
       "type": "movie",
       "title": "The Good, the Bad and the Ugly",
-      "rate": 0,
+      "rate": "1",
       "id": "0060196"
     },
     {
       "type": "movie",
       "title": "12 Angry Men",
-      "rate": 0,
+      "rate": "3",
       "id": "0050083"
     },
     {
       "type": "movie",
       "title": "Schindler's List",
-      "rate": 0,
+      "rate": "3",
       "id": "0108052"
     },
     {
       "type": "show",
       "title": "Fight Club",
-      "rate": 0,
+      "rate": "2",
       "id": "0137523"
     },
     {
       "type": "show",
       "title": "Star Wars: Episode V - The Empire Strikes Back",
-      "rate": 0,
+      "rate": "3",
       "id": "0080684"
     },
     {
       "type": "show",
       "title": "The Lord of the Rings: The Fellowship of the Ring",
-      "rate": 0,
+      "rate": "3",
       "id": "0120737"
     },
     {
       "type": "movie",
       "title": "Inception",
-      "rate": 0,
+      "rate": "2",
       "id": "1375666"
     },
     {
       "type": "movie",
       "title": "Goodfellas",
-      "rate": 0,
+      "rate": "2",
       "id": "0099685"
     },
     {
       "type": "movie",
       "title": "Star Wars",
-      "rate": 0,
+      "rate": "3",
       "id": "0076759"
     },
     {
       "type": "movie",
       "title": "Seven Samurai",
-      "rate": 0,
+      "rate": "7",
       "id": "0047478"
     },
     {
       "type": "movie",
       "title": "Forrest Gump",
-      "rate": 0,
+      "rate": "11",
       "id": "0109830"
     },
     {
       "type": "movie",
       "title": "The Matrix",
-      "rate": 0,
+      "rate": "13",
       "id": "0133093"
     },
     {
       "type": "movie",
       "title": "The Lord of the Rings: The Two Towers",
-      "rate": 0,
+      "rate": "5",
       "id": "0167261"
     },
     {
@@ -105,7 +105,7 @@
     {
       "type": "movie",
       "title": "Once Upon a Time in the West",
-      "rate": 0,
+      "rate": "7",
       "id": "0064116"
     },
     {
@@ -117,43 +117,43 @@
     {
       "type": "movie",
       "title": "Raiders of the Lost Ark",
-      "rate": 0,
+      "rate": "3",
       "id": "0082971"
     },
     {
       "type": "movie",
       "title": "Rear Window",
-      "rate": 0,
+      "rate": "7",
       "id": "0047396"
     },
     {
       "type": "movie",
       "title": "It's a Wonderful Life",
-      "rate": 0,
+      "rate": "7",
       "id": "0038650"
     },
     {
       "type": "movie",
       "title": "Psycho",
-      "rate": 0,
+      "rate": "10",
       "id": "0054215"
     },
     {
       "type": "movie",
       "title": "Léon: The Professional",
-      "rate": 0,
+      "rate": "6",
       "id": "0110413"
     },
     {
       "type": "movie",
       "title": "Sunset Blvd.",
-      "rate": 0,
+      "rate": "9",
       "id": "0043014"
     },
     {
       "type": "movie",
       "title": "American History X",
-      "rate": 0,
+      "rate": "5",
       "id": "0120586"
     },
     {
@@ -171,7 +171,7 @@
     {
       "type": "movie",
       "title": "Saving Private Ryan",
-      "rate": "2",
+      "rate": "3",
       "id": "0120815"
     },
     {
@@ -211,14 +211,28 @@
       "id": "0053125"
     },
     {
-      "id": "tt1234567",
-      "title": "Hakan Dedler",
-      "type": "movies"
+      "title": "Anon",
+      "type": "movies",
+      "rate": "9",
+      "id": "d4e47f"
     },
     {
-      "id": "3322333",
-      "title": "Mahmuta",
-      "type": "shows"
+      "title": "qwewqe",
+      "type": "movies",
+      "rate": 2,
+      "id": "dfe19e"
+    },
+    {
+      "title": "asdsa",
+      "type": "movies",
+      "rate": 0,
+      "id": "eaf0ee"
+    },
+    {
+      "title": "ASD",
+      "type": "movies",
+      "rate": 3,
+      "id": "e81cfa"
     }
   ]
 }

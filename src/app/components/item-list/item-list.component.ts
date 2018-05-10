@@ -1,3 +1,4 @@
+import { UserInterfaceService } from './../../services/user-interface.service';
 import { RemoveMovie } from './../../actions/movie.actions';
 import { DialogMessageComponent } from './../dialog-message/dialog-message.component';
 
@@ -20,7 +21,8 @@ import  "rxjs/add/operator/map";
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
-  styleUrls: ['./item-list.component.scss']
+  styleUrls: ['./item-list.component.scss'],
+  
   
 })
 export class ItemListComponent implements OnInit {
@@ -33,7 +35,9 @@ export class ItemListComponent implements OnInit {
   constructor(
     private httpService:HttpService,
     public dialog: MatDialog,
-    private store: Store<fromRoot.State>)
+    private store: Store<fromRoot.State>,
+    private uiService: UserInterfaceService
+    )
   { }
 
   ngOnInit() {
@@ -41,6 +45,8 @@ export class ItemListComponent implements OnInit {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
     this.movieList$ = this.store.select(fromRoot.getMovie);
 
+    this.uiService.setShowStatus(false);
+ 
     this.store.select(fromRoot.getMovie).subscribe(result => {
       if(result)
       {

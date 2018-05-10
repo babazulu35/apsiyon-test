@@ -8,6 +8,8 @@ import { Store } from '@ngrx/store';
 
 import * as fromRoot from '../../app.reducer';
 import * as Movie from '../../actions/movie.actions';
+import { ActivatedRoute } from '@angular/router';
+import { UserInterfaceService } from '../../services/user-interface.service';
 
 @Component({
   selector: 'app-create-record',
@@ -16,29 +18,42 @@ import * as Movie from '../../actions/movie.actions';
 })
 export class CreateRecordComponent implements OnInit {
   name:string;
-  rate:string;
+  rate:any;
   type:string;
   constructor(
     public dialog: MatDialog,
     public router:Router,
     private store:Store<fromRoot.State>,
-    private httpService:HttpService
+    private httpService:HttpService,
+    private route:ActivatedRoute,
+    private uiService:UserInterfaceService
   ) { }
   
   isValid:boolean;
   ngOnInit() {
     this.isValid = false;
+
+    if(this.route.snapshot.data['type'] == 'create') this.uiService.setShowStatus(true);
   }
 
   sendRecord() {
-    this.httpService.postNew(<Movies>{id:"22233",title:this.name,type:this.type,rate:this.rate}).subscribe(onSave => {
-      console.log("On Save This");
+    let message;
+    if(isNaN(this.rate) == true) {
+        message = "Yanlış tip puan giriş olduğunda varsayılan 0 olarak kayıt edildi!";
+        this.rate = 0;
+    }
+    else {
+      message = "Kaydedildi";
+      
+    }
+    console.log("this rante",this.rate);
+    this.httpService.postNew(<Movies>{title:this.name,type:this.type,rate:this.rate}).subscribe(onSave => {
       if(onSave) {
         this.httpService.refreshState();
         let dialogRef = this.dialog.open(DialogMessageComponent, {
           width: '50vw',
           height:'500px',
-          data:{title:'Kaydedildi',id:null,icon:'fas fa-6x fa-check',multiActions:false,next:'redirect'}
+          data:{title:message,id:null,icon:'fas fa-6x fa-check',multiActions:false,next:'redirect'}
           
         });
     
@@ -75,8 +90,9 @@ export class CreateRecordComponent implements OnInit {
     this.name = event.target.value;
   }
   ratechange(event) {
+    console.log(event.target.value);
     this.rate = "";
-    this.rate = event.target.value;
+    this.rate = parseInt(event.target.value);
   }
 
 }

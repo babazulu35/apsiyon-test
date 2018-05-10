@@ -1,8 +1,10 @@
 <div class="c-pagination">
-    <div class="c-pagination__prev" (click)="onGo('prev')">O</div>
+    <div class="c-pagination__prev" *ngIf="(currentPage$ | async) > 1" (click)="onGo('prev')">
+        <i class="fas fa-caret-left"></i>
+    </div>
     <!-- Lıst Number Items -->
     <div class="c-pagination__item" *ngFor="let page of pages" (click)="onPageChange(page)" [class.selected]="page == (currentPage$ | async)">{{page}}</div>
-    <div class="c-pagination__next" (click)="onGo('next')">
-        b
+    <div class="c-pagination__next" *ngIf="(currentPage$ | async) < totalItem" (click)="onGo('next')">
+        <i class="fas fa-caret-right"></i>
     </div>
 </div>

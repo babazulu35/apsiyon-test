@@ -1,10 +1,17 @@
 <mat-toolbar color="primary">
     <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
-            <div class="mdc-layout-grid__cell">
-                <app-sort-item [icon]="'expand_more'" menuTitle="Türler"></app-sort-item>
-                <app-sort-item [icon]="'expand_more'" menuTitle="Sırala"></app-sort-item>
+            <div class="mdc-layout-grid__cell" *ngIf="!showButton">
+                <app-sort-item [icon]="'expand_more'" [menuItem]="menuItemFilter" sortType="filter" menuTitle="Türler"></app-sort-item>
+                <app-sort-item [icon]="'expand_more'" [menuItem]="menuItemSort" sortType="sort" menuTitle="Sırala"></app-sort-item>
             </div>
+            <div class="mdc-layout-grid__cell" *ngIf="showButton">
+                <button mat-raised-button color="accent" routerLink="/">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                    Listeye Dön   
+                </button>
+            </div>
+
             <div class="mdc-layout-grid__cell" style="text-align:center;">
                 <span class="s-toolbar--title">Case Study</span>
             </div>

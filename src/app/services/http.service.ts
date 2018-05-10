@@ -18,6 +18,9 @@ export class HttpService {
   count: BehaviorSubject<number> = new BehaviorSubject(0);
   movieSubject: BehaviorSubject<Movies[]> = new BehaviorSubject([]);
 
+  isFiltered:BehaviorSubject<Object> = new BehaviorSubject({});
+  isSorted:BehaviorSubject<Object> = new BehaviorSubject({});
+
   constructor(
     private http:HttpClient,
     private store: Store<fromRoot.State>,
@@ -53,7 +56,7 @@ export class HttpService {
   }
 
   postNew(data:Movies):Observable<Movies> {
-    let id = this.createRandomId(data.id);
+    let id = this.generateRandomUniqueID();
     data.id = id;
     return this.http.post<Movies>(this.apiUrl + this.endPoint,data) ;
   }
@@ -71,17 +74,30 @@ export class HttpService {
   }
 
   paginate(paginate:{page:any,limit:any}):Observable<Movies[]> {
-
-    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_page':paginate.page,'_limit':paginate.limit}})
+    this.isFiltered.subscribe(filterParams => {
+      console.log("Filter Params",filterParams);
+    })
+    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_page':paginate.page,'_limit':paginate.limit,'_sort':'rate','order':'asc'}})
   }
 
-  createRandomId(value:string) {
-      //TODO Create Random Id
-      return "3322333";
-  } 
+  generateRandomUniqueID(length : number = 6){
+    return 'x'.repeat(length).replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+    });
+  }
+
+  filterItem(filterParams:any) {
+    this.isFiltered.next(filterParams);
+  }
+
+  sortItem(sortParams:any) {
+    this.isSorted.next(sortParams);
+  }
 
   sortBy(sort:{value:string,type:string}):Observable<Movies[]> {
-    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_sort':sort.value,'order':sort.type}})
+    
+    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_sort':sort.value,'_order':sort.type}})
   }
 
   filterByType(filter:{value:string}):Observable<Movies[]> {

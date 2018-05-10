@@ -1,3 +1,5 @@
+import { ThemeChangeComponentComponent } from './shared/theme-change-component/theme-change-component.component';
+import { UserInterfaceService } from './services/user-interface.service';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { ResponseTimeInterceptor } from './interceptor/response-time';
@@ -33,7 +35,8 @@ export const metaReducers = [logger];
     CreateRecordComponent,
     ToolbarComponent,
     PaginationComponent,
-    DialogMessageComponent
+    DialogMessageComponent,
+    ThemeChangeComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ export const metaReducers = [logger];
     
   ],
   providers: [
+    UserInterfaceService,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
         provide: HTTP_INTERCEPTORS,

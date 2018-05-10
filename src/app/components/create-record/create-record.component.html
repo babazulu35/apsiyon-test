@@ -11,7 +11,7 @@
         </mat-form-field>
 
         <mat-form-field color="accent">
-            <input type="text" matInput #rate maxlength="2" pattern="\d*" placeholder="Puanı">
+            <input type="text" matInput (keyup)="ratechange($event)" maxlength="2" pattern="\d*" placeholder="Puanı">
         </mat-form-field>
 
         <button [disabled]="!isValid" mat-raised-button color="accent" (click)="sendRecord()">KAYDET</button>
