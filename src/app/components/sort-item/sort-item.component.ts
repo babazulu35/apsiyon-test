@@ -34,7 +34,7 @@ export class SortItemComponent implements OnInit {
 
     switch(event.change) {
       case 0:
-        
+      this.filterByType(null);
       break;
       case 1:
         this.filterByType('movie');
@@ -65,10 +65,7 @@ export class SortItemComponent implements OnInit {
  }
 
  filterByType(typeName:string) {
-     this.httpService.filterByType({value:typeName}).subscribe(filterResult => {
-      this.store.dispatch(new UI.StartLoading());
-      this.store.dispatch(new Movie.SortType(filterResult));
-     })
+     this.httpService.filterByType({value:typeName});
  }
 
 }

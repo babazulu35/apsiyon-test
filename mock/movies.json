@@ -37,12 +37,6 @@
       "id": "0080684"
     },
     {
-      "type": "show",
-      "title": "The Lord of the Rings: The Fellowship of the Ring",
-      "rate": "3",
-      "id": "0120737"
-    },
-    {
       "type": "movie",
       "title": "Inception",
       "rate": "2",
@@ -93,13 +87,13 @@
     {
       "type": "movie",
       "title": "Se7en",
-      "rate": 0,
+      "rate": "3",
       "id": "0114369"
     },
     {
       "type": "movie",
       "title": "The Silence of the Lambs",
-      "rate": 0,
+      "rate": "3",
       "id": "0102926"
     },
     {
@@ -159,7 +153,7 @@
     {
       "type": "movie",
       "title": "Apocalypse Now",
-      "rate": 0,
+      "rate": "4",
       "id": "0078788"
     },
     {

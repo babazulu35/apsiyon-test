@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  api: {
+    mock:"http://localhost:4200",
+    live:""
+  }
 };

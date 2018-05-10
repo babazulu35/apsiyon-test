@@ -9,6 +9,8 @@ import { Store } from '@ngrx/store';
 import * as fromRoot from '../app.reducer';
 import * as UI from '../actions/ui.actions';
 import * as Movie from '../actions/movie.actions';
+import * as Pagination from '../actions/pagination.actions';
+import { HttpParams } from '@angular/common/http';
 @Injectable()
 export class HttpService {
   
@@ -17,6 +19,7 @@ export class HttpService {
   endPoint:string = "/movies";
   count: BehaviorSubject<number> = new BehaviorSubject(0);
   movieSubject: BehaviorSubject<Movies[]> = new BehaviorSubject([]);
+  pageLimit:BehaviorSubject<number> = new BehaviorSubject(0);
 
   isFiltered:BehaviorSubject<Object> = new BehaviorSubject({});
   isSorted:BehaviorSubject<Object> = new BehaviorSubject({});
@@ -74,10 +77,20 @@ export class HttpService {
   }
 
   paginate(paginate:{page:any,limit:any}):Observable<Movies[]> {
+    let parms;
+    let params = new HttpParams().set('_page',paginate.page).set('_limit',paginate.limit);
     this.isFiltered.subscribe(filterParams => {
-      console.log("Filter Params",filterParams);
+      if(Object.keys(filterParams).length > 0) {
+          params = params.append('type',filterParams['value']);
+         
+      } 
+    });
+    this.isSorted.subscribe(sortParams => {
+      if(Object.keys(sortParams).length >0) {
+        params = params.append('_sort',sortParams['value']).append('_order',sortParams['type']);
+      }
     })
-    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_page':paginate.page,'_limit':paginate.limit,'_sort':'rate','order':'asc'}})
+    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params});
   }
 
   generateRandomUniqueID(length : number = 6){
@@ -96,12 +109,29 @@ export class HttpService {
   }
 
   sortBy(sort:{value:string,type:string}):Observable<Movies[]> {
-    
-    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_sort':sort.value,'_order':sort.type}})
+    this.store.dispatch(new Pagination.FlushPagination());
+    let limit = 0;
+    this.pageLimit.subscribe(result => limit = result)
+    this.sortItem(sort);
+    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'_sort':sort.value,'_order':sort.type,'_page':'1','_limit':limit.toString()}})
   }
 
-  filterByType(filter:{value:string}):Observable<Movies[]> {
-    return this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params:{'type':filter.value}});
+  filterByType(filter:{value:string}) {
+    this.store.dispatch(new Pagination.FlushPagination());
+    let limit = 0;
+    let params;
+    console.log(filter);
+    filter.value != null ? params = new HttpParams().set('type',filter.value) : params = new HttpParams().set('*','*');
+    this.pageLimit.subscribe(result => limit = result);
+    if(filter.value != null) this.filterItem(filter);
+    this.http.get<Movies[]>(this.apiUrl + this.endPoint,{params}).subscribe(filterResult => {
+        this.store.dispatch(new UI.StartLoading());
+        this.count.next(filterResult.length);
+        this.paginate({page:'1',limit:limit}).subscribe(result => {
+          this.store.dispatch(new Movie.SortType(result));
+        });
+
+    });
   }
 
 

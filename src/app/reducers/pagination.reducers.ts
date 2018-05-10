@@ -1,4 +1,4 @@
-import {PaginationActions,SHOW_NEXT_PAGE,SHOW_PREV_PAGE,SHOW_SELECTED_PAGE} from '../actions/pagination.actions';
+import {PaginationActions,SHOW_NEXT_PAGE,SHOW_PREV_PAGE,SHOW_SELECTED_PAGE, FLUSH_PAGINATION} from '../actions/pagination.actions';
 import {Movies} from '../models/movies';
 
 export interface State {
@@ -22,6 +22,10 @@ export function PaginationReducer(state = initialState, action:PaginationActions
         case SHOW_SELECTED_PAGE:
             return  {
                 pagination: state.pagination = action.payload
+            }
+        case FLUSH_PAGINATION:
+            return {
+                pagination: 1
             }
         default:
             return state;

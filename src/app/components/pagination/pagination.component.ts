@@ -21,21 +21,19 @@ export class PaginationComponent implements OnInit {
   constructor(private httpService:HttpService,private store:Store<fromRoot.State>) { }
 
   ngOnInit() {
-    
+    this.httpService.pageLimit.next(this.pageLimit);
     this.currentPage$ = this.store.select(fromRoot.getCurrentPage);
     
     this.store.select(fromRoot.getCurrentPage).subscribe(result => {
       this.httpService.paginate({page:result,limit:this.pageLimit}).subscribe(pageResult => {
-        console.log("Page Result",pageResult);
-        
+
         this.store.dispatch(new Movie.GetMovies(pageResult));
       })
     })
 
     this.httpService.count.subscribe(countResult => {
-      console.log("Count Result",countResult);
+      this.pages = [];
       this.totalItem = Math.ceil(countResult / this.pageLimit);
-      console.log("T",this.totalItem);
       for(let i = 0 ; i < this.totalItem; i++) {
         this.pages.push(i + 1);
       }
@@ -43,9 +41,15 @@ export class PaginationComponent implements OnInit {
     
   }
 
-  onPageChange(page:number) {
-    this.store.dispatch(new UI.StartLoading());
-    this.store.dispatch(new PAGINATION.ShowSelectedPage(page));
+  onPageChange(page:number,currentPage) {
+    let Cpage;
+    this.currentPage$.subscribe(result => Cpage = result);
+    // to stop empty request call
+    if(page != Cpage)
+    {
+      this.store.dispatch(new UI.StartLoading());
+      this.store.dispatch(new PAGINATION.ShowSelectedPage(page));
+    }
   }
 
   onGo(direction:string) {
