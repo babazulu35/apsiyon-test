@@ -1,7 +1,26 @@
 # Apsiyon
 
 ### Usage
+<ol>
+    <li>
+    Clone Project
+    </li>
+    <li>
+        ` npm install`
+    </li>
+    <li>
+        Open terminal  
+        <ol>
+        <li>
+            Start JSON Mock Server  `npm run mock:server`
+        </li>
+        <li>
+            Start Project  `npm run start:proxy`
+        </li>
+        </ol>
+    </li>
 
+</ol>
 #### Steps
 `npm install`
 `npm run mock:server`
