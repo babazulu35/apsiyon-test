@@ -1,27 +1,41 @@
-# ApsiyonCase
+# Apsiyon
+
+### Usage
+
+<ol>
+    <li>
+    Clone Project
+    </li>
+    <li>
+        ` npm install`
+    </li>
+    <li>
+        Open terminal  
+        <ol>
+        <li>
+            Start JSON Mock Server  ` npm run mock:server `
+        </li>
+        <li>
+            Start Project ` npm run start:proxy `
+        </li>
+        </ol>
+    </li>
+
+</ol>
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run start:proxy` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Mock JSON server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm run mock:server` for a mock data server. Navigate to `http://localhost:4200/movies` or `http://localhost:3000/movies` for All Json Data . For JSON Server README please type only `http://localhost:3000/` after start the server
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
