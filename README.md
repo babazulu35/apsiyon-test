@@ -14,9 +14,12 @@
         <li>
             Start JSON Mock Server  `npm run mock:server`
         </li>
+          Open Another Terminal
+          <ol>
         <li>
             Start Project  `npm run start:proxy`
         </li>
+          </ol>
         </ol>
     </li>
 
