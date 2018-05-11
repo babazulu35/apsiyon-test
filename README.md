@@ -2,28 +2,10 @@
 
 ### Usage
 
-<ol>
-    <li>
-    Clone Project
-    </li>
-    <li>
-        ` npm install`
-    </li>
-    <li>
-        Open terminal  
-        <ol>
-        <li>
-            Start JSON Mock Server  ` npm run mock:server `
-        </li>
-        <li>
-            Start Project ` npm run start:proxy `
-        </li>
-        </ol>
-    </li>
-
-</ol>
-
-
+#### Steps
+`npm install`
+`npm run mock:server`
+`npm run start:proxy`
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
 
