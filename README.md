@@ -35,6 +35,14 @@ Run `npm run start:proxy` for a dev server. Navigate to `http://localhost:4200/`
 
 Run `npm run mock:server` for a mock data server. Navigate to `http://localhost:4200/movies` or `http://localhost:3000/movies` for All Json Data . For JSON Server README please type only `http://localhost:3000/` after start the server
 
+## NgRX/ Store
+
+You can find the all state information on the console
+
+ Or for state charts u can the Chrome NGRx Devtools Extension
+
+ https://github.com/zalmoxisus/redux-devtools-extension
+
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
