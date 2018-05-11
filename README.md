@@ -1,4 +1,4 @@
-# Apsiyon
+# Apsiyon 
 
 ### Usage
 <ol>
@@ -41,7 +41,7 @@ Run `npm run mock:server` for a mock data server. Navigate to `http://localhost:
 
 You can find the all state information on the console
 
- Or for state charts u can the Chrome NGRx Devtools Extension
+ Or for state charts u can use the Chrome NGRx Devtools Extension
 
  https://github.com/zalmoxisus/redux-devtools-extension
 
