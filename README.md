@@ -1,4 +1,4 @@
-# Apsiyon 
+# Apsiyon ( Angular 5 @ngRx/store)
 
 ### Usage
 <ol>
